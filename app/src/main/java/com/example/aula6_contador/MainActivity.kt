@@ -8,12 +8,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -30,6 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.aula6_contador.ui.theme.Aula6ContadorTheme
 
 class MainActivity : ComponentActivity() {
@@ -46,7 +53,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    val contagem = remember { mutableStateOf(0) }
+    val contador = remember { mutableStateOf(0) }
 
     Box(
         modifier = Modifier
@@ -97,13 +104,50 @@ fun MainScreen() {
                     colors = CardDefaults.cardColors(contentColor = Color(0xFFF3F4F6))
                 ) {
                     Text(
-                        text = "1",
+                        text = "${contador.value}",
                         modifier = Modifier.padding(horizontal = 32.dp, vertical = 16.dp),
                         style = MaterialTheme.typography.displayMedium,
                         color = Color(0xFF6366F1),
                         fontWeight = FontWeight.Bold
                     )
+                }
 
+                Button(
+                    onClick = { contador.value++ },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF10B981)),
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = "Incrementar",
+                        modifier = Modifier.size(20.dp)
+                    )
+
+                    Text(
+                        text = "Incrementar",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
+                Button(
+                    onClick = { contador.value-- },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFEF4123)),
+                    shape = RoundedCornerShape(16.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Delete,
+                        contentDescription = "Decrementar",
+                        modifier = Modifier.size(20.dp)
+                    )
+
+                    Text(
+                        text = "Incrementar",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }
