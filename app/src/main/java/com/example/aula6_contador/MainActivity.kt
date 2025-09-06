@@ -103,6 +103,7 @@ fun MainScreen() {
                         color = Color(0xFF6366F1),
                         fontWeight = FontWeight.Bold
                     )
+
                 }
             }
         }
